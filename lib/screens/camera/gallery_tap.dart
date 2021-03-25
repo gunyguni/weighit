@@ -36,7 +36,7 @@ class _galleryTapState extends State<galleryTap> {
       stream: FirebaseFirestore.instance.collection('user').doc(_user.uid).snapshots(),
       builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (!snapshot.hasData ||
-            snapshot.data == null) {
+            snapshot.data == null || snapshot.data.data() == null) {
           return Center(child: CircularProgressIndicator());
         }
         return Scaffold(
@@ -49,11 +49,10 @@ class _galleryTapState extends State<galleryTap> {
               IconButton(
                 icon: Icon(Icons.delete, color: Colors.black,),
                 onPressed: () {
-
                   // print(firebase_storage.FirebaseStorage.instance.ref().child(_user.username).child('${snapshot.data.get('pickTime')[widget.index]}'));
                   // print(snapshot.data.data().values);
-                  List photoUrl = snapshot.data.get('url');
-                  List pickTime = snapshot.data.get('pickTime');
+                  List photoUrl = snapshot.hasData == null ? Center(child: CircularProgressIndicator()) : snapshot.data.get('url');
+                  List pickTime = snapshot.hasData == null ? Center(child: CircularProgressIndicator()) : snapshot.data.get('pickTime');
                   // firebase_storage.FirebaseStorage.instance
                   //     .ref()
                   //     .child('${_user.username}')
