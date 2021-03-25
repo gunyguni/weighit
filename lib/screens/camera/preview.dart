@@ -64,6 +64,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                     .doc(_user.uid)
                     .update({'url': _user.url, 'pickTime': _user.pickTime});
                 Navigator.pop(context);
+
               },
             ),
             // IconButton(

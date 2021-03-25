@@ -9,6 +9,7 @@ class TheUser {
   List<dynamic> url = [];
   String pickedUrl;
   // level이랑 routine 부분 routine page고치고 바로 빼기
+
   final String level;
   final String routine;
   ///////////////////////
